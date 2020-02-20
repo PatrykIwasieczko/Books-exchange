@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 from .models import Book
 
 
@@ -9,7 +9,10 @@ def home(request):
     }
     return render(request, 'books/home.html', context)
 
-# Create your views here.
+
+class CreateBookView(CreateView):
+    model = Book
+    fields = ['title', 'author', 'description', ]
 
 
 class BooksListView(ListView):
