@@ -1,6 +1,26 @@
-{% extends 'books/base.html' %} {% block content %} {% for book in books %}
-<h4>{{book.author}}</h4>
-<h2>{{ book.title }}</h2>
-<hr />
+{% extends 'books/base.html' %} {% block content %}
 
-{% endfor %} {% endblock content %}
+<div class="container">
+    <div class="row section">
+        {% for book in books %}
+        <div class="col s12 m6 l4">
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://materializecss.com/images/sample-1.jpg" />
+                    <span class="card-title">{{ book.title }}</span>
+                    <a
+                        class="btn-floating halfway-fab waves-effect waves-light red"
+                        ><i class="material-icons">arrow_forward</i></a
+                    >
+                </div>
+                <div class="card-content">
+                    <p>{{ book.author }}</p>
+                    <p>{{ book.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}
