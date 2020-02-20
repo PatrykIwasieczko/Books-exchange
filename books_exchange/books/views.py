@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Book
 
 
@@ -20,6 +20,16 @@ class BooksListView(ListView):
     template_name = 'books/home.html'
     context_object_name = 'books'
     ordering = ['-date_posted']
+
+
+class BookUpdateView(UpdateView):
+    model = Book
+    fields = ['title', 'author', 'description']
+
+
+class BookDeleteView(DeleteView):
+    model = Book
+    success_url = '/'
 
 
 class BookDetailsView(DetailView):
