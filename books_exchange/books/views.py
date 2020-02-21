@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Book
+from django.contrib.auth.models import User
 
 
 def home(request):
@@ -34,3 +35,13 @@ class BookDeleteView(DeleteView):
 
 class BookDetailsView(DetailView):
     model = Book
+
+
+class UserBooksListView(ListView):
+    model = Book
+    template_name = 'books/user_books.html'
+    context_object_name = 'books'
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Book.objects.filter(owner=user).order_by('-date_posted')
