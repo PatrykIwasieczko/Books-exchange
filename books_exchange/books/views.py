@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Book
 from django.contrib.auth.models import User
@@ -11,9 +12,13 @@ def home(request):
     return render(request, 'books/home.html', context)
 
 
-class CreateBookView(CreateView):
+class CreateBookView(LoginRequiredMixin, CreateView):
     model = Book
     fields = ['title', 'author', 'description', ]
+
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super().form_valid(form)
 
 
 class BooksListView(ListView):
