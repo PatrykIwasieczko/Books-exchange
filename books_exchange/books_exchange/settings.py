@@ -124,3 +124,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 CRISPY_TEMPLATE_PACK = 'materialize_css_forms'
+
+LOGIN_REDIRECT_URL = 'books-home'
+LOGIN_URL = 'login'
