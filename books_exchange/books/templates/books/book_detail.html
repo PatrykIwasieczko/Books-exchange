@@ -19,8 +19,10 @@
                     <h6>Author: {{ object.author }}</h6>
                     <p><p>Posted: {{ object.date_posted|date:"F d, Y" }}</p></p>
                     <p>{{ object.description }}</p>
-                    <a href="{% url 'book-update' object.id %}" class="waves-effect waves-light btn"><i class="material-icons right">update</i>update</a>
-                    <a href="{% url 'book-delete' object.id %}" class="waves-effect waves-light btn red darken-2"><i class="material-icons right">delete</i>delete</a>
+                    {% if object.owner == user %}
+                        <a href="{% url 'book-update' object.id %}" class="waves-effect waves-light btn"><i class="material-icons right">update</i>update</a>
+                        <a href="{% url 'book-delete' object.id %}" class="waves-effect waves-light btn red darken-2"><i class="material-icons right">delete</i>delete</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
