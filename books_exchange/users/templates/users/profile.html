@@ -1,0 +1,18 @@
+{% extends "books/base.html" %} {% load crispy_forms_tags %} {% block content %}
+<div class="container section">
+    <div class="media">
+        <div>
+            <h6>{{ user.username }}</h6>
+            <p class="text-secondary">{{ user.email }}</p>
+        </div>
+    </div>
+    <form method="POST">
+        {% csrf_token %}
+
+        <h5>Profile Info</h5>
+        {{ u_form|crispy }} {{ p_form|crispy }}
+
+        <button type="submit">Update</button>
+    </form>
+</div>
+{% endblock content %}
