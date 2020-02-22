@@ -1,31 +1,29 @@
 {% extends 'books/base.html' %} {% block content %}
 
-<div class="container">
-    <h3>
-        {{ view.kwargs.username }} books
-    </h3>
-    <div class="row section">
-        {% for book in books %}
-        <div class="col s12 m6 l4">
-            <div class="card">
-                <div class="card-image">
-                    <img src="https://materializecss.com/images/sample-1.jpg" />
-                    <span class="card-title">{{ book.title }}</span>
-                    <a
-                        href="{% url 'book-details' book.id %}"
-                        class="btn-floating halfway-fab waves-effect waves-light red"
-                        ><i class="material-icons">arrow_forward</i></a
-                    >
-                </div>
-                <div class="card-content">
-                    <h6>Author: {{ book.author }}</h6>
-                    <p>Posted: {{ book.date_posted|date:"F d, Y" }}</p>
-                    <p>{{ book.description }}</p>
-                </div>
+<h3>
+    {{ view.kwargs.username }} books
+</h3>
+<div class="row section">
+    {% for book in books %}
+    <div class="col s12 m6 l4">
+        <div class="card">
+            <div class="card-image">
+                <img src="https://materializecss.com/images/sample-1.jpg" />
+                <span class="card-title">{{ book.title }}</span>
+                <a
+                    href="{% url 'book-details' book.id %}"
+                    class="btn-floating halfway-fab waves-effect waves-light red"
+                    ><i class="material-icons">arrow_forward</i></a
+                >
+            </div>
+            <div class="card-content">
+                <h6>Author: {{ book.author }}</h6>
+                <p>Posted: {{ book.date_posted|date:"F d, Y" }}</p>
+                <p>{{ book.description }}</p>
             </div>
         </div>
-        {% endfor %}
     </div>
+    {% endfor %}
 </div>
 
 {% endblock content %}

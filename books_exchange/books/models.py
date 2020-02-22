@@ -23,6 +23,7 @@ class Book(models.Model):
         User, on_delete=models.CASCADE, blank=True, null=True)
     category = models.CharField(
         max_length=20, choices=GENRE_CHOICES, blank=True, null=True)
+    image = models.ImageField(default='default.jpg', upload_to='books_pics')
 
     def __str__(self):
         return self.title
