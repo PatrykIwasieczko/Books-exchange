@@ -1,28 +1,54 @@
 {% extends 'books/base.html' %} {% block content %}
 
-<div class="container">
-    <div class="row section">
-        {% for book in books %}
-        <div class="col s12 m6 l4">
-            <div class="card">
-                <div class="card-image">
-                    <img src="https://materializecss.com/images/sample-1.jpg" />
-                    <span class="card-title">{{ book.title }}</span>
-                    <a
-                        href="{% url 'book-details' book.id %}"
-                        class="btn-floating halfway-fab waves-effect waves-light red"
-                        ><i class="material-icons">arrow_forward</i></a
-                    >
-                </div>
-                <div class="card-content">
-                    <h6>Author: {{ book.author }}</h6>
-                    <p>Posted: {{ book.date_posted|date:"F d, Y" }}</p>
-                    <p>{{ book.description }}</p>
-                </div>
+<div class="row section">
+    {% for book in books %}
+    <div class="col s12 m6 l4">
+        <div class="card">
+            <div class="card-image">
+                <img src="https://materializecss.com/images/sample-1.jpg" />
+                <span class="card-title">{{ book.title }}</span>
+                <a
+                    href="{% url 'book-details' book.id %}"
+                    class="btn-floating halfway-fab waves-effect waves-light red"
+                    ><i class="material-icons">arrow_forward</i></a
+                >
+            </div>
+            <div class="card-content">
+                <h6>Author: {{ book.author }}</h6>
+                <p>Category: {{ book.category }}</p>
+                <p>Posted: {{ book.date_posted|date:"F d, Y" }}</p>
+                <p>{{ book.description }}</p>
             </div>
         </div>
-        {% endfor %}
     </div>
+    {% endfor %}
 </div>
+<ul class="pagination center">
+    {% if page_obj.has_previous %}
+    <li class="waves-effect"><a href="?page=1">First</a></li>
+    <li class="waves-effect">
+        <a href="?page={{ page_obj.previous_page_number }}"
+            ><i class="material-icons">chevron_left</i></a
+        >
+    </li>
+
+    {% endif %} {% for num in page_obj.paginator.page_range %}
+    <!--  -->
+    {% if page_obj.number == num %}
+    <li class="waves-effect active"><a href="?page={{ num }}">{{ num }}</a></li>
+    <!--  -->
+    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+    <li class="waves-effect"><a href="?page={{ num }}">{{ num }}</a></li>
+    {% endif %} {% endfor %} {% if page_obj.has_next %}
+    <li class="waves-effect">
+        <a href="?page={{ page_obj.next_page_number }}"
+            ><i class="material-icons">chevron_right</i></a
+        >
+    </li>
+    <li class="waves-effect">
+        <a href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+    </li>
+    {% endif %}
+</ul>
 
 {% endblock content %}

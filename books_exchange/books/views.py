@@ -26,6 +26,7 @@ class BooksListView(ListView):
     template_name = 'books/home.html'
     context_object_name = 'books'
     ordering = ['-date_posted']
+    paginate_by = 3
 
 
 class BookUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -43,7 +44,7 @@ class BookUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return False
 
 
-class BookDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class BookDeleteView(DeleteView):
     model = Book
     success_url = '/'
 
