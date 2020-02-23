@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { Card, Icon, Avatar, Col, Row } from "antd";
 import "antd/dist/antd.css";
 import axios from "axios";
+import Navbar from "./components/Navbar";
 
 import "./App.css";
 
@@ -28,34 +29,39 @@ class App extends Component {
     render() {
         const { Meta } = Card;
         return (
-            <div className="container">
-                <Row gutter={16}>
-                    {this.state.books.map(book => (
-                        <Col key={book.date_posted} span={6}>
-                            <Card
-                                // style={{ height: 300 }}
-                                cover={<img alt="example" src={book.image} />}
-                                actions={[
-                                    <Icon type="setting" key="setting" />,
-                                    <Icon type="edit" key="edit" />,
-                                    <Icon type="right" key="right" />
-                                ]}
-                            >
-                                <Meta
-                                    avatar={
-                                        <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+            <>
+                <Navbar />
+                <div className="container">
+                    <Row className="row" gutter={16}>
+                        {this.state.books.map(book => (
+                            <Col key={book.date_posted} span={6}>
+                                <Card
+                                    // style={{ height: 300 }}
+                                    cover={
+                                        <img alt="example" src={book.image} />
                                     }
-                                    title={book.title}
-                                    description={book.description}
-                                />
-                                <p>{book.owner}</p>
-                                <p>{book.date_posted}</p>
-                                <p>{book.author}</p>
-                            </Card>
-                        </Col>
-                    ))}
-                </Row>
-            </div>
+                                    actions={[
+                                        <Icon type="setting" key="setting" />,
+                                        <Icon type="edit" key="edit" />,
+                                        <Icon type="right" key="right" />
+                                    ]}
+                                >
+                                    <Meta
+                                        avatar={
+                                            <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                                        }
+                                        title={book.title}
+                                        description={book.description}
+                                    />
+                                    <p>{book.owner}</p>
+                                    <p>{book.date_posted}</p>
+                                    <p>{book.author}</p>
+                                </Card>
+                            </Col>
+                        ))}
+                    </Row>
+                </div>
+            </>
         );
     }
 }

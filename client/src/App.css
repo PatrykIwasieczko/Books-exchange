@@ -1,4 +1,15 @@
 .container {
     width: 80vw;
     margin: 0 auto;
+    margin-top: 4rem;
+}
+
+.menu {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 3rem;
+    padding-right: 10rem;
+    text-align: right;
+    z-index: 1;
 }
