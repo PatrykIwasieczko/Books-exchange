@@ -1,11 +1,13 @@
 // React
 import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 
 // Antd
-import { Card, Icon, Avatar, Col, Row } from "antd";
+import { Card, Icon, Avatar, Col } from "antd";
 
 // Utilities
 import axios from "axios";
+import moment from "moment";
 
 class BookDetails extends Component {
     state = {
@@ -19,7 +21,6 @@ class BookDetails extends Component {
                 this.setState({
                     book: res.data
                 });
-                console.log(res.data);
             })
             .catch(err => {
                 console.error(err);
@@ -37,26 +38,30 @@ class BookDetails extends Component {
         } = this.state.book;
         const { Meta } = Card;
         return (
-            <Card
-                cover={<img alt="example" src={image} />}
-                actions={[
-                    <Icon type="left" key="left" />,
-                    <Icon type="setting" key="setting" />,
-                    <Icon type="edit" key="edit" />
-                ]}
-            >
-                <Meta
-                    avatar={
-                        <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                    }
-                    title={title}
-                    description={description}
-                />
-                <p>{owner}</p>
-                <p>{date_posted}</p>
-                <p>{author}</p>
-                <p>{category}</p>
-            </Card>
+            <Col style={{ justifyContent: "center" }} offset={6} span={12}>
+                <Card
+                    cover={<img alt="example" src={image} />}
+                    actions={[
+                        <NavLink to="/">
+                            <Icon type="left" key="left" />
+                        </NavLink>,
+                        <Icon type="setting" key="setting" />,
+                        <Icon type="edit" key="edit" />
+                    ]}
+                >
+                    <Meta
+                        avatar={
+                            <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                        }
+                        title={title}
+                        description={moment(date_posted).fromNow()}
+                    />
+                    <NavLink to="/">Owner: {owner}</NavLink>
+                    <p>Author: {author}</p>
+                    <p>Category: {category}</p>
+                    <p>{description}</p>
+                </Card>
+            </Col>
         );
     }
 }

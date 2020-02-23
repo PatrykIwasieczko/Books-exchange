@@ -1,4 +1,8 @@
+// React
 import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
+
+// Antd
 import { Menu, Icon } from "antd";
 
 class Navbar extends Component {
@@ -20,8 +24,10 @@ class Navbar extends Component {
                 mode="horizontal"
             >
                 <Menu.Item key="home">
-                    <Icon type="home" />
-                    Home
+                    <NavLink to="/">
+                        <Icon type="home" />
+                        Home
+                    </NavLink>
                 </Menu.Item>
                 <Menu.Item key="about">
                     <Icon type="info" />

@@ -7,6 +7,8 @@ import { Card, Icon, Avatar, Col, Row } from "antd";
 
 // Utilities
 import axios from "axios";
+import moment from "moment";
+// import "moment/locale/pl";
 
 class BooksList extends Component {
     state = {
@@ -20,7 +22,6 @@ class BooksList extends Component {
                 this.setState({
                     books: res.data
                 });
-                console.log(res.data);
             })
             .catch(err => {
                 console.error(err);
@@ -33,7 +34,6 @@ class BooksList extends Component {
                 {this.state.books.map(book => (
                     <Col key={book.date_posted} span={6}>
                         <Card
-                            // style={{ height: 300 }}
                             cover={<img alt="example" src={book.image} />}
                             actions={[
                                 <Icon type="setting" key="setting" />,
@@ -48,12 +48,12 @@ class BooksList extends Component {
                                     <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
                                 }
                                 title={book.title}
-                                description={book.description}
+                                description={moment(book.date_posted).fromNow()}
                             />
-                            <p>{book.owner}</p>
-                            <p>{book.date_posted}</p>
-                            <p>{book.author}</p>
-                            <p>{book.id}</p>
+                            <hr />
+                            <NavLink to="/">Owner: {book.owner}</NavLink>
+                            <p>Author: {book.author}</p>
+                            <p>Category: {book.category}</p>
                         </Card>
                     </Col>
                 ))}
