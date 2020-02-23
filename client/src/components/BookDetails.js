@@ -26,6 +26,7 @@ class BookDetails extends Component {
                 console.error(err);
             });
     }
+
     render() {
         const {
             image,
@@ -46,7 +47,7 @@ class BookDetails extends Component {
                             <Icon type="left" key="left" />
                         </NavLink>,
                         <Icon type="setting" key="setting" />,
-                        <Icon type="edit" key="edit" />
+                        <Icon type="delete" key="delete" />
                     ]}
                 >
                     <Meta

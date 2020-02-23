@@ -38,8 +38,10 @@ class Navbar extends Component {
                     Login
                 </Menu.Item>
                 <Menu.Item key="add">
-                    <Icon type="plus" />
-                    Add new book
+                    <NavLink to="/addbook">
+                        <Icon type="plus" />
+                        Add new book
+                    </NavLink>
                 </Menu.Item>
                 <Menu.Item key="profile">
                     <Icon type="profile" />

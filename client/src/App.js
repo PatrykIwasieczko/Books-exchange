@@ -10,6 +10,7 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import BookList from "./components/BooksList";
 import BookDetails from "./components/BookDetails";
+import AddNewBook from "./components/AddNewBook";
 
 class App extends Component {
     render() {
@@ -20,6 +21,7 @@ class App extends Component {
                     <Switch>
                         <Route exact path="/" component={BookList} />
                         <Route path="/book/:id" component={BookDetails} />
+                        <Route path="/addbook" component={AddNewBook} />
                     </Switch>
                 </div>
             </BrowserRouter>
