@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 
 from .serializers import BookSerializer
 from rest_framework import generics
+from rest_framework.generics import ListAPIView, RetrieveAPIView
 
 
 def home(request):
@@ -32,11 +33,14 @@ class BooksListView(ListView):
     paginate_by = 3
 
 
-class BookListCreate(generics.ListCreateAPIView):
+class BookListAPIView(ListAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
-    ordering = ['-date_posted']
-    paginate_by = 3
+
+
+class BookDetailsAPIView(RetrieveAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
 
 
 class BookUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
