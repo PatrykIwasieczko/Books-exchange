@@ -30,3 +30,6 @@ class Book(models.Model):
 
     def get_absolute_url(self):
         return reverse('book-details', kwargs={'pk': self.pk})
+
+    class Meta:
+        ordering = ['-date_posted']

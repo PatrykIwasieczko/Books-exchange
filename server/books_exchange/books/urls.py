@@ -3,6 +3,7 @@ from .views import BooksListView, BookDetailsView, CreateBookView, BookUpdateVie
 from . import views
 
 urlpatterns = [
+    path('api/books/', views.BookListCreate.as_view()),
     path('', BooksListView.as_view(), name='books-home'),
     path('user/<str:username>/', UserBooksListView.as_view(), name="user-books"),
     path('book/<int:pk>/', BookDetailsView.as_view(), name="book-details"),

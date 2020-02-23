@@ -4,6 +4,9 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from .models import Book
 from django.contrib.auth.models import User
 
+from .serializers import BookSerializer
+from rest_framework import generics
+
 
 def home(request):
     context = {
@@ -14,7 +17,7 @@ def home(request):
 
 class CreateBookView(LoginRequiredMixin, CreateView):
     model = Book
-    fields = ['title', 'author', 'description', ]
+    fields = ['title', 'author', 'description', 'image']
 
     def form_valid(self, form):
         form.instance.owner = self.request.user
@@ -29,9 +32,16 @@ class BooksListView(ListView):
     paginate_by = 3
 
 
+class BookListCreate(generics.ListCreateAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    ordering = ['-date_posted']
+    paginate_by = 3
+
+
 class BookUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Book
-    fields = ['title', 'author', 'description']
+    fields = ['title', 'author', 'description', 'image']
 
     def form_valid(self, form):
         form.instance.owner = self.request.user
