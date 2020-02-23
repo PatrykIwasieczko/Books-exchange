@@ -43,6 +43,14 @@ class BookDetailsAPIView(RetrieveAPIView):
     serializer_class = BookSerializer
 
 
+class UserBooksListAPIView(ListAPIView):
+    serializer_class = BookSerializer
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Book.objects.filter(owner=user)
+
+
 class BookUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Book
     fields = ['title', 'author', 'description', 'image']

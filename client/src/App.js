@@ -11,6 +11,7 @@ import Navbar from "./components/Navbar";
 import BookList from "./components/BooksList";
 import BookDetails from "./components/BookDetails";
 import AddNewBook from "./components/AddNewBook";
+import UserBooksList from "./components/UserBooksList";
 
 class App extends Component {
     render() {
@@ -22,6 +23,10 @@ class App extends Component {
                         <Route exact path="/" component={BookList} />
                         <Route path="/book/:id" component={BookDetails} />
                         <Route path="/addbook" component={AddNewBook} />
+                        <Route
+                            path="/user/:username"
+                            component={UserBooksList}
+                        />
                     </Switch>
                 </div>
             </BrowserRouter>

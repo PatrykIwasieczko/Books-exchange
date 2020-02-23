@@ -10,14 +10,14 @@ import axios from "axios";
 import moment from "moment";
 // import "moment/locale/pl";
 
-class BooksList extends Component {
+class UserBooksList extends Component {
     state = {
         books: []
     };
-
     componentDidMount() {
+        const username = this.props.match.params.username;
         axios
-            .get("http://127.0.0.1:8000/api/books/")
+            .get(`http://127.0.0.1:8000/api/user/${username}`)
             .then(res => {
                 this.setState({
                     books: res.data
@@ -51,9 +51,7 @@ class BooksList extends Component {
                                 description={moment(book.date_posted).fromNow()}
                             />
                             <hr />
-                            <NavLink to={`/user/${book.owner}`}>
-                                Owner: {book.owner}
-                            </NavLink>
+                            <p>Owner: {book.owner}</p>
                             <p>Author: {book.author}</p>
                             <p>Category: {book.category}</p>
                         </Card>
@@ -64,4 +62,4 @@ class BooksList extends Component {
     }
 }
 
-export default BooksList;
+export default UserBooksList;

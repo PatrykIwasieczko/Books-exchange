@@ -57,7 +57,7 @@ class BookDetails extends Component {
                         title={title}
                         description={moment(date_posted).fromNow()}
                     />
-                    <NavLink to="/">Owner: {owner}</NavLink>
+                    <p>Owner: {owner}</p>
                     <p>Author: {author}</p>
                     <p>Category: {category}</p>
                     <p>{description}</p>
