@@ -5,6 +5,9 @@ import { NavLink } from "react-router-dom";
 // Antd
 import { Card, Icon, Avatar, Col, Row } from "antd";
 
+// Components
+import BackButton from "./BackButton";
+
 // Utilities
 import axios from "axios";
 import moment from "moment";
@@ -36,7 +39,7 @@ class UserBooksList extends Component {
                         <Card
                             cover={<img alt="example" src={book.image} />}
                             actions={[
-                                <Icon type="setting" key="setting" />,
+                                <BackButton />,
                                 <Icon type="edit" key="edit" />,
                                 <NavLink to={`/book/${book.id}`}>
                                     <Icon type="right" key="right" />

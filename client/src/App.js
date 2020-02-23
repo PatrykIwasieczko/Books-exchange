@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "antd/dist/antd.css";
 import "./App.css";
 
-// Component
+// Components
 import Navbar from "./components/Navbar";
 import BookList from "./components/BooksList";
 import BookDetails from "./components/BookDetails";
