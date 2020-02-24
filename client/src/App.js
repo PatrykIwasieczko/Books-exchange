@@ -12,6 +12,7 @@ import BookList from "./components/BooksList";
 import BookDetails from "./components/BookDetails";
 import AddNewBook from "./components/AddNewBook";
 import UserBooksList from "./components/UserBooksList";
+import Login from "./components/Login";
 
 class App extends Component {
     render() {
@@ -27,6 +28,7 @@ class App extends Component {
                             path="/user/:username"
                             component={UserBooksList}
                         />
+                        <Route path="/login" component={Login} />
                     </Switch>
                 </div>
             </BrowserRouter>

@@ -1,6 +1,5 @@
 // React
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
 
 // Antd
 import { Card, Icon, Avatar, Col } from "antd";

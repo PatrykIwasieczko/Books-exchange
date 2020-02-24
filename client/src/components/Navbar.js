@@ -34,8 +34,10 @@ class Navbar extends Component {
                     About
                 </Menu.Item>
                 <Menu.Item key="login">
-                    <Icon type="login" />
-                    Login
+                    <NavLink to="/login">
+                        <Icon type="login" />
+                        Login
+                    </NavLink>
                 </Menu.Item>
                 <Menu.Item key="add">
                     <NavLink to="/addbook">
