@@ -56,6 +56,7 @@ class BooksList extends Component {
                             </NavLink>
                             <p>Author: {book.author}</p>
                             <p>Category: {book.category}</p>
+                            <p>{book.description}</p>
                         </Card>
                     </Col>
                 ))}

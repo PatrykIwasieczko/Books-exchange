@@ -6,6 +6,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    path('api/register/', user_views.CreateAccount.as_view(), name="create-user"),
     path('admin/', admin.site.urls),
     path('profile/', user_views.profile, name='profile'),
     path('register/', user_views.register, name="register"),

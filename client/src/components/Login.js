@@ -1,8 +1,9 @@
 // React
 import React, { Component } from "react";
-
-import { Form, Icon, Input, Button, Checkbox } from "antd";
 import { NavLink } from "react-router-dom";
+
+// Antd
+import { Form, Icon, Input, Button } from "antd";
 
 class LoginForm extends Component {
     handleSubmit = e => {

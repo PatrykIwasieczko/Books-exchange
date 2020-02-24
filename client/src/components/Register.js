@@ -2,7 +2,11 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 
+// Antd
 import { Form, Input, Tooltip, Icon, Button } from "antd";
+
+// Utilities
+import axios from "axios";
 
 class RegistrationForm extends Component {
     state = {
@@ -13,8 +17,24 @@ class RegistrationForm extends Component {
     handleSubmit = e => {
         e.preventDefault();
         this.props.form.validateFieldsAndScroll((err, values) => {
+            const { username, email, password } = values;
+            const newUser = {
+                username,
+                email,
+                password
+            };
             if (!err) {
-                console.log("Received values of form: ", values);
+                axios
+                    .post("http://127.0.0.1:8000/api/register/", newUser)
+                    .then(res => {
+                        return res.data;
+                    })
+                    .then(() => {
+                        this.props.history.push("/");
+                    })
+                    .catch(err => {
+                        console.error(err);
+                    });
             }
         });
     };

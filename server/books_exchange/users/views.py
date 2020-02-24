@@ -3,6 +3,9 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 
+from rest_framework import generics
+from .serializers import CreateUserSerializer
+
 
 def register(request):
     if request.method == 'POST':
@@ -39,3 +42,7 @@ def profile(request):
         'p_form': p_form
     }
     return render(request, 'users/profile.html', context)
+
+
+class CreateAccount(generics.CreateAPIView):
+    serializer_class = CreateUserSerializer
