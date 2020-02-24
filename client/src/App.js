@@ -13,6 +13,7 @@ import BookDetails from "./components/BookDetails";
 import AddNewBook from "./components/AddNewBook";
 import UserBooksList from "./components/UserBooksList";
 import Login from "./components/Login";
+import Register from "./components/Register";
 
 class App extends Component {
     render() {
@@ -29,6 +30,7 @@ class App extends Component {
                             component={UserBooksList}
                         />
                         <Route path="/login" component={Login} />
+                        <Route path="/register" component={Register} />
                     </Switch>
                 </div>
             </BrowserRouter>

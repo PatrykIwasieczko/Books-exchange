@@ -16,6 +16,7 @@ class LoginForm extends Component {
 
     render() {
         const { getFieldDecorator } = this.props.form;
+
         return (
             <>
                 <h1 style={{ textAlign: "center" }}>Log In</h1>
@@ -72,7 +73,7 @@ class LoginForm extends Component {
                         >
                             Log in
                         </Button>
-                        Or <NavLink to="/login">register now!</NavLink>
+                        Or <NavLink to="/register">register now!</NavLink>
                     </Form.Item>
                 </Form>
             </>
