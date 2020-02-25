@@ -46,7 +46,7 @@ class BookDetails extends Component {
                     cover={<img alt="example" src={image} />}
                     actions={[
                         <BackButton />,
-                        <Icon type="setting" key="setting" />,
+                        <Icon type="edit" key="edit" />,
                         <Icon type="delete" key="delete" />
                     ]}
                 >

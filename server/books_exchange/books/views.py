@@ -4,9 +4,9 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from .models import Book
 from django.contrib.auth.models import User
 
-from .serializers import BookSerializer
+from .serializers import BookSerializer, CreateBookSerializer
 from rest_framework import generics
-from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView, UpdateAPIView, CreateAPIView
 
 
 def home(request):
@@ -41,6 +41,15 @@ class BookListAPIView(ListAPIView):
 class BookDetailsAPIView(RetrieveAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
+
+
+class BookUpdateAPIView(UpdateAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+
+
+class BookCreateAPIView(CreateAPIView):
+    serializer_class = CreateBookSerializer
 
 
 class UserBooksListAPIView(ListAPIView):

@@ -1,12 +1,55 @@
+// React
 import React, { Component } from "react";
+
+// Antd
 import { Form, Input, Select, Upload, Icon, Button } from "antd";
 
+// Utilities
+import axios from "axios";
+
 class AddNewBookForm extends Component {
+    state = { previewVisible: false, previewImage: "", fileList: [] };
+
+    handleCancel = () => this.setState({ previewVisible: false });
+
+    handlePreview = file => {
+        this.setState({
+            previewImage: file.thumbUrl,
+            previewVisible: true
+        });
+    };
+
+    handleUpload = ({ fileList }) => {
+        this.setState({ fileList });
+    };
+
     handleSubmit = e => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log("Received values of form: ", values);
+                const { title, author, description, category } = values;
+                let formData = new FormData(
+                    title,
+                    author,
+                    description,
+                    category
+                );
+                formData.append("title", title);
+                formData.append("author", author);
+                formData.append("description", description);
+                formData.append("category", category);
+                formData.append("image", this.state.fileList[0].originFileObj);
+                axios
+                    .post("http://127.0.0.1:8000/api/book/create/", formData)
+                    .then(res => {
+                        return res.data;
+                    })
+                    .then(() => {
+                        this.props.history.push("/");
+                    })
+                    .catch(err => {
+                        console.error(err);
+                    });
             }
         });
     };
@@ -95,8 +138,10 @@ class AddNewBookForm extends Component {
                         })(
                             <Upload
                                 name="book_image"
-                                action="/upload.do"
-                                listType="picture"
+                                onPreview={this.handlePreview}
+                                onChange={this.handleUpload}
+                                listType="picture-card"
+                                beforeUpload={() => false}
                             >
                                 <Button>
                                     <Icon type="upload" /> Click to upload
@@ -115,6 +160,6 @@ class AddNewBookForm extends Component {
     }
 }
 
-const AddNewBook = Form.create({ name: "validate_other" })(AddNewBookForm);
+const AddNewBook = Form.create({ name: "create_book" })(AddNewBookForm);
 
 export default AddNewBook;
