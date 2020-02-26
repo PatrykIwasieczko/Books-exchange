@@ -9,7 +9,8 @@ from .views import (BooksListView,
                     BookDetailsAPIView,
                     UserBooksListAPIView,
                     BookUpdateAPIView,
-                    BookCreateAPIView)
+                    BookCreateAPIView,
+                    BookUpdateAPIView)
 from . import views
 
 
@@ -18,6 +19,7 @@ urlpatterns = [
     path('api/book/<int:pk>/', views.BookDetailsAPIView.as_view()),
     path('api/book/<int:pk>/update/', views.BookUpdateAPIView.as_view()),
     path('api/book/create/', views.BookCreateAPIView.as_view()),
+    path('api/book/update/', views.BookUpdateAPIView.as_view()),
     path('api/user/<str:username>/', views.UserBooksListAPIView.as_view()),
     path('', BooksListView.as_view(), name='books-home'),
     path('user/<str:username>/', UserBooksListView.as_view(), name="user-books"),

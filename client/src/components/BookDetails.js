@@ -1,5 +1,6 @@
 // React
 import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 
 // Antd
 import { Card, Icon, Avatar, Col } from "antd";
@@ -31,6 +32,7 @@ class BookDetails extends Component {
 
     render() {
         const {
+            id,
             image,
             description,
             title,
@@ -46,7 +48,9 @@ class BookDetails extends Component {
                     cover={<img alt="example" src={image} />}
                     actions={[
                         <BackButton />,
-                        <Icon type="edit" key="edit" />,
+                        <NavLink to={`/book/${id}/update`}>
+                            <Icon type="edit" key="edit" />
+                        </NavLink>,
                         <Icon type="delete" key="delete" />
                     ]}
                 >

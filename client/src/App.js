@@ -14,6 +14,7 @@ import AddNewBook from "./components/AddNewBook";
 import UserBooksList from "./components/UserBooksList";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import UpdateBook from "./components/UpdateBook";
 
 class App extends Component {
     render() {
@@ -23,7 +24,12 @@ class App extends Component {
                 <div className="container">
                     <Switch>
                         <Route exact path="/" component={BookList} />
-                        <Route path="/book/:id" component={BookDetails} />
+                        <Route exact path="/book/:id" component={BookDetails} />
+                        <Route
+                            exact
+                            path="/book/:id/update"
+                            component={UpdateBook}
+                        />
                         <Route path="/addbook" component={AddNewBook} />
                         <Route
                             path="/user/:username"
